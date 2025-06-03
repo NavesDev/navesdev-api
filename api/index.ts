@@ -25,8 +25,8 @@ app.register(cors, {
 });
 
 app.register(ratelimit, {
-  max: 3,
-  timeWindow: 1000*60*2,
+  max: 60,
+  timeWindow: 1000*60*60,
   global: true
 });
 
