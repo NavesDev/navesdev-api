@@ -21,7 +21,7 @@ const pool = mysql.createPool({
 });
 
 app.register(cors, {
-  origin: "http://navesdev.github.io",
+  origin: "https://navesdev-api.vercel.app/",
   credentials:true
 });
 
