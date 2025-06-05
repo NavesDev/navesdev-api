@@ -21,7 +21,8 @@ const pool = mysql.createPool({
 });
 
 app.register(cors, {
-  origin: "*", //"http://navesdev.github.io"
+  origin: "http://navesdev.github.io",
+  credentials:true
 });
 
 app.register(ratelimit, {
