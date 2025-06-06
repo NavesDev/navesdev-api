@@ -3,6 +3,7 @@ import cors from "@fastify/cors";
 import ratelimit from "@fastify/rate-limit";
 import cookies from "@fastify/cookie";
 import mysql from "mysql2";
+import redis from "@fastify/redis"
 require("dotenv").config();
 
 const app = fastify({
@@ -25,10 +26,17 @@ app.register(cors, {
   credentials:true
 });
 
+app.register(redis, {
+  url:process.env.REDIS_URL,
+  connectTimeout:500,
+  maxLoadingRetryTime:1
+})
+
 app.register(ratelimit, {
-  max: 60,
-  timeWindow: 1000*60*60,
-  global: true
+  max: 3,
+  timeWindow: 1000*60,
+  global: true,
+  redis:app.redis
 });
 
 app.register(cookies);
