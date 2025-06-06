@@ -28,13 +28,13 @@ app.register(cors, {
 
 app.register(redis, {
   url:process.env.REDIS_URL,
-  connectTimeout:500,
-  maxLoadingRetryTime:1
+  connectTimeout:1000,
+  maxRetriesPerRequest:1
 })
 
 app.register(ratelimit, {
-  max: 3,
-  timeWindow: 1000*60,
+  max: 60,
+  timeWindow: "1h",
   global: true,
   redis:app.redis
 });
@@ -103,7 +103,16 @@ app.get("/websites/:name", async (request: any, reply) => {
   return response;
 });
 
-app.get("/websites/:name/newaccess", async (request: any, reply) => {
+const lessRequestC = {
+  config:{
+    rateLimit:{
+      max:5,
+      timeWindow:"2m"
+    }
+  }
+} 
+
+app.get("/websites/:name/newaccess", lessRequestC, async (request: any, reply) => {
   const name = request.params.name;
   const canAcess = request.cookies[`<acess-${name}>`];
   try {
