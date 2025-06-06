@@ -123,6 +123,7 @@ app.get("/websites/:name/newaccess", async (request: any, reply) => {
             httpOnly: true,
             maxAge: 60 * 3,
             secure: true,
+            sameSite:'None'
           })
           .send({ status: true });
       }
