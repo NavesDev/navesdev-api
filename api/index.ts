@@ -37,7 +37,11 @@ app.register(ratelimit, {
   timeWindow: "2m",
   global: true,
   redis:app.redis,
- 
+  keyGenerator: function(request){
+        const ip = request.ip;
+        request.log.info({ actor: 'RateLimit', key: `${ip}` }, `Nova tentativa de requisição`);
+        return ip;
+    },
   errorResponseBuilder: function (request, context) {
   request.log.warn({ actor: 'RateLimit', ip: request.ip }, `RATE LIMIT ATINGIDO!`);
   return {
@@ -121,6 +125,7 @@ const lessRequestC = {
       keyGenerator: function(request){
         const name = request.params.name;
         const ip = request.ip;
+        request.log.info({ actor: 'RateLimit', key: `${name} - ${ip}` }, `Nova tentativa de acesso`);
         return `${name} - ${ip}`
       }
     }
