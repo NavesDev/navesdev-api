@@ -35,8 +35,8 @@ async function bootstrap() {
   });
 
   await app.register(ratelimit, {
-    max: 3,
-    timeWindow: "2m",
+    max: 60,
+    timeWindow: "1h",
     global: true,
     redis: app.redis,
     keyGenerator: function (request) {
