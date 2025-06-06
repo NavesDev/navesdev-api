@@ -22,7 +22,7 @@ const pool = mysql.createPool({
 });
 
 app.register(cors, {
-  origin: "https://navesdev.github.io",
+  origin: "*",//"https://navesdev.github.io",
   credentials:true
 });
 
@@ -36,7 +36,7 @@ app.register(ratelimit, {
   max: 60,
   timeWindow: "1h",
   global: true,
-  redis:app.redis
+  redis:app.redis,
 });
 
 app.register(cookies);
@@ -106,15 +106,20 @@ app.get("/websites/:name", async (request: any, reply) => {
 const lessRequestC = {
   config:{
     rateLimit:{
-      max:5,
-      timeWindow:"2m"
+      max:1,
+      timeWindow:"2m",
+      keyGenerator: function(request){
+        const name = request.params.name;
+        const ip = request.ip;
+        return `${name} - ${ip}`
+      }
     }
   }
 } 
 
 app.get("/websites/:name/newaccess", lessRequestC, async (request: any, reply) => {
   const name = request.params.name;
-  const canAcess = request.cookies[`<acess-${name}>`];
+  const canAcess = request.cookies[`acess-${name}`];
   try {
     if (!canAcess) {
       const [result]: any = await pool
@@ -128,7 +133,7 @@ app.get("/websites/:name/newaccess", lessRequestC, async (request: any, reply) =
           .send({ status: false, message: "Website não encontrado" });
       } else {
         return reply
-          .setCookie(`<acess-${name}>`, "true", {
+          .setCookie(`acess-${name}`, "true", {
             httpOnly: true,
             maxAge: 60 * 3,
             secure: true,
