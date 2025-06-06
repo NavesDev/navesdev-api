@@ -33,10 +33,20 @@ app.register(redis, {
 })
 
 app.register(ratelimit, {
-  max: 60,
-  timeWindow: "1h",
+  max: 3,
+  timeWindow: "2m",
   global: true,
   redis:app.redis,
+ 
+  errorResponseBuilder: function (request, context) {
+  request.log.warn({ actor: 'RateLimit', ip: request.ip }, `RATE LIMIT ATINGIDO!`);
+  return {
+    statusCode: 429,
+    error: "Too Many Requests",
+    message: `Limite de requisições atingido (${context.max}). Tente de novo em ${Math.ceil(context.ttl / 1000)}s ou ${Math.ceil(context.ttl/(1000*60))}m.`,
+    retryAfter:(context.ttl/1000)
+  };
+}
 });
 
 app.register(cookies);
@@ -70,60 +80,6 @@ async function searchDataByName(name: string, wantedData: string) {
 app.get("/", () => {
   return `Rotas disponíveis : '/websites', '/websites/NOMEDOSITE', '/websites/NOMEDOSITE/newaccess'`;
 });
-
-app.get('/testar-redis', async (request, reply) => {
-  request.log.info('Iniciando teste de conexão com o Redis...');
-
-  if (!app.redis) {
-    request.log.error('Cliente Redis (app.redis) não encontrado. Verifique a ordem de registro dos plugins.');
-  
-    return reply.code(503).send({
-      status: 'falha',
-      mensagem: 'O serviço Redis não está configurado ou disponível na aplicação.'
-    });
-  }
-
-  try {
- 
-    const chaveDeTeste = 'fastify-redis-test';
-    const valorDeTeste = `Conexão OK em ${new Date().toISOString()}`;
-    
-
-    const setResult = await app.redis.set(chaveDeTeste, valorDeTeste, 'EX', 10);
-    request.log.info({ setResult }, 'Comando SET para o Redis executado.');
-
-    if (setResult !== 'OK') {
-
-      throw new Error(`Comando SET não retornou 'OK'. Retornou: ${setResult}`);
-    }
-
-
-    const getResult = await app.redis.get(chaveDeTeste);
-    request.log.info({ getResult }, 'Comando GET para o Redis executado.');
-
-    if (getResult === valorDeTeste) {
-      request.log.info('SUCESSO! O valor lido do Redis é igual ao valor salvo.');
-      return reply.code(200).send({
-        status: 'sucesso',
-        mensagem: 'Conexão com Redis funcionando perfeitamente!',
-        valorLido: getResult,
-      });
-    } else {
-      request.log.error({ esperado: valorDeTeste, recebido: getResult }, 'FALHA! O valor lido do Redis é diferente do valor salvo.');
-      throw new Error('Inconsistência de dados: o valor lido é diferente do que foi salvo.');
-    }
-
-  } catch (error) {
-
-    request.log.error({ err: error }, 'Ocorreu um erro ao tentar comunicar com o Redis.');
-    return reply.code(500).send({
-      status: 'falha',
-      mensagem: 'Não foi possível comunicar com o servidor Redis.',
-      erro: error.message, 
-    });
-  }
-});
-
 
 app.get("/websites", async (request, reply) => {
   try {
