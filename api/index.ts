@@ -11,7 +11,6 @@ const app = fastify({
 });
 
 async function bootstrap() {
-  
   const pool = mysql.createPool({
     host: process.env.DB_HOST,
     user: process.env.DB_USER,
@@ -152,32 +151,19 @@ async function bootstrap() {
     lessRequestC,
     async (request: any, reply) => {
       const name = request.params.name;
-      const canAcess = request.cookies[`acess-${name}`];
+
       try {
-        if (!canAcess) {
-          const [result]: any = await pool
-            .promise()
-            .query("UPDATE website SET waccess = waccess + 1 WHERE wname= ?", [
-              name,
-            ]);
-          if (result.affectedRows === 0) {
-            return reply
-              .status(404)
-              .send({ status: false, message: "Website não encontrado" });
-          } else {
-            return reply
-              .setCookie(`acess-${name}`, "true", {
-                httpOnly: true,
-                maxAge: 60 * 3,
-                secure: true,
-                sameSite: "None",
-              })
-              .send({ status: true });
-          }
-        } else {
+        const [result]: any = await pool
+          .promise()
+          .query("UPDATE website SET waccess = waccess + 1 WHERE wname= ?", [
+            name,
+          ]);
+        if (result.affectedRows === 0) {
           return reply
-            .code(429)
-            .send({ status: false, message: "Acesso recente percebido" });
+            .status(404)
+            .send({ status: false, message: "Website não encontrado" });
+        } else {
+          return reply.send({ status: true });
         }
       } catch (error) {
         return reply.code(500).send({
@@ -190,9 +176,8 @@ async function bootstrap() {
   return app;
 }
 
-bootstrap().then(app=>{
+bootstrap().then((app) => {
   app.listen({ port: 1607 }).then(() => {
-  console.log("API Online!");
+    console.log("API Online!");
+  });
 });
-})
-
