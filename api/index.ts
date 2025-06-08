@@ -4,6 +4,7 @@ import ratelimit from "@fastify/rate-limit";
 import cookies from "@fastify/cookie";
 import mysql from "mysql2";
 import redis from "@fastify/redis";
+import ms from "ms";
 require("dotenv").config();
 
 const app = fastify({
@@ -163,7 +164,7 @@ async function bootstrap() {
             .status(404)
             .send({ status: false, message: "Website não encontrado" });
         } else {
-          return reply.send({ status: true });
+          return reply.send({ status: true, nextAccess:ms(lessRequestC.config.rateLimit.timeWindow)});
         }
       } catch (error) {
         return reply.code(500).send({
