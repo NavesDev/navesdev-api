@@ -5,6 +5,8 @@ import cookies from "@fastify/cookie";
 import mysql from "mysql2";
 import redis from "@fastify/redis";
 import ms from "ms";
+import stc from "@fastify/static";
+import path from "path";
 require("dotenv").config();
 
 const app = fastify({
@@ -27,7 +29,11 @@ async function bootstrap() {
     origin: "*", //"https://navesdev.github.io",
     credentials: true,
   });
+  await app.register(stc,{
+    root:path.join(__dirname, '..', 'public')
+  })
 
+  
   await app.register(redis, {
     url: process.env.REDIS_URL,
     connectTimeout: 1000,
@@ -93,8 +99,8 @@ async function bootstrap() {
     }
   }
 
-  app.get("/", () => {
-    return `Rotas disponíveis : '/websites', '/websites/NOMEDOSITE', '/websites/NOMEDOSITE/newaccess'`;
+  app.get("/", (request,reply) => {
+    return reply.sendFile("index.html");
   });
 
   app.get("/websites", async (request, reply) => {
@@ -143,6 +149,20 @@ async function bootstrap() {
           );
           return `${name} - ${ip}`;
         },
+        errorResponseBuilder: function (request, context) {
+          request.log.warn(
+            { actor: "RateLimit", ip: request.ip },
+            `RATE LIMIT ATINGIDO!`
+          );
+          return {
+            statusCode: 429,
+            error: "Too Many Requests",
+            message: `Já foi registrado um acesso recentemente no seu dispositivo. Tente de novo em ${Math.ceil(
+              context.ttl / 1000
+            )}s ou ${Math.ceil(context.ttl / (1000 * 60))}m.`,
+            retryAfter: context.ttl / 1000,
+          };
+        },
       },
     },
   };
@@ -164,7 +184,10 @@ async function bootstrap() {
             .status(404)
             .send({ status: false, message: "Website não encontrado" });
         } else {
-          return reply.send({ status: true, nextAccess:ms(lessRequestC.config.rateLimit.timeWindow)});
+          return reply.send({
+            status: true,
+            nextAccess: ms(lessRequestC.config.rateLimit.timeWindow),
+          });
         }
       } catch (error) {
         return reply.code(500).send({

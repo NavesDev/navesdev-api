@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NavesDev - API</title>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+      body {
+        background-color: #fff7c8;
+        font-family: "poppins";
+        margin: 0;
+        max-width: 100vw;
+        overflow-x: hidden;
+        color: rgb(66, 66, 66);
+        text-align: justify;
+        display: flex;
+        justify-content: center;
+      }
+      main {
+        background-color: white;
+        width: calc(100%-20px);
+        display: flex;
+        flex-direction: column;
+        border-radius: 10px;
+        padding: 30px;
+        margin: 20px;
+        gap: 20px;
+        max-width: 1000px;
+      }
+      header {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+        color: rgb(36, 36, 36);
+      }
+      header p {
+        color: rgb(92, 92, 92);
+      }
+      p,
+      h1,
+      h2,
+      h3 {
+        margin: 0;
+      }
+      h3 {
+        font-weight: 500;
+      }
+      #gitRep {
+        border: 0;
+        border-bottom: 3px solid rgb(101, 168, 0);
+        border-right: 3px solid rgb(101, 168, 0);
+        font-family: "poppins";
+        font-weight: 500;
+        font-size: 16px;
+        border-radius: 5px;
+        background-color: greenyellow;
+        transition: 300ms;
+        padding: 6px;
+        cursor: pointer;
+      }
+      #gitRep:hover {
+        background-color: rgb(101, 168, 0);
+      }
+      article {
+        display: flex;
+        flex-direction: column;
+        gap: 5px;
+      }
+      #routes {
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        margin-top: 10px;
+        margin-left: 20px;
+      }
+      #routes #header {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 7px;
+      }
+      #routes #header button {
+        border: 0;
+        background-color: aqua;
+        font-family: "poppins";
+        border-radius: 10px;
+        font-weight: 500;
+        transition: 300ms;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 3px 5px 3px 5px;
+      }
+      #routes #header button:hover {
+        background-color: rgb(0, 214, 214);
+      }
+      .nonDecoration {
+        text-decoration: none;
+      }
+      .codeSpace::before{
+        content: "Segure para expandir";
+
+        font-size: 14px;
+        position: absolute;
+        left: 50%;
+        background-color: rgb(212, 212, 212);
+        width: 100%;
+        text-align: center;
+        transform: translateX(-50%);
+        transition: 500ms;
+      }
+      .codeSpace {
+        position:relative;
+        max-width: 350px;
+        overflow: auto;
+        background-color: rgba(218, 218, 218, 0.349);
+        max-height: 50px;
+        border: 2px solid rgb(212, 212, 212);
+        transition: 300ms;
+      }
+      .codeSpace:hover{
+        max-height: 150px;
+        max-width: 80%;
+      }
+      .codeSpace:hover::before{
+        opacity: 0;
+      }
+      .codeSpace::-webkit-scrollbar {
+        width: 8px;
+        height: 8px;
+        background: rgb(212, 212, 212);
+      }
+      .codeSpace::-webkit-scrollbar-thumb {
+        background: rgb(180, 180, 180);
+        border-radius: 10px;
+      }
+      @media (max-width:1000px) {
+ 
+        .codeSpace::before{
+            content:"Toque para expandir"
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <header>
+        <h1>NAVES DEV - API</h1>
+        <p>Api de uso pessoal para gestão de projetos pessoais</p>
+      </header>
+      <article id="a1">
+        <h2>Utilização</h2>
+        <p>
+          Esta api utiliza Node.js como principal framework para produção do
+          projeto. O projeto consta também com o uso de banco de dados em nuvem
+          e <a href="https://redis.io/">Redis</a>. Atualmente, utiliza-se neste
+          projeto as bibliotecas <a href="https://fastify.dev/">Fastify</a> e
+          alguns de seus plugins e
+          <a href="https://www.npmjs.com/package/mysql2">MySQL2</a> para
+          comunicação com banco de dados em nuvem.
+        </p>
+        <p>Acesse o repositório no GitHub para ver com detalhes:</p>
+        <a href="https://github.com/NavesDev/navesdev-api">
+          <button id="gitRep">&lt;/&gt;ACESSAR REPOSITÓRIO</button>
+        </a>
+      </article>
+      <article id="a2">
+        <h2>Rotas</h2>
+        <p>Todas as rotas que atualmente constam no projeto.</p>
+        <div id="routes">
+          <div id="header">
+            <h3>/Websites</h3>
+            <a
+              class="nonDecoration"
+              href="https://navesdev-api.vercel.app/websites"
+            >
+              <button id="testb">
+                TESTAR ROTA
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="20px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#1f1f1f"
+                >
+                  <path
+                    d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"
+                  />
+                </svg>
+              </button>
+            </a>
+          </div>
+          <p>
+            Retorna os websites presentes no banco de dados e algumas
+            informações como indentificação e número de acessos.
+          </p>
+          <p>Exemplo de resposta:</p>
+          <div class="codeSpace">
+            <pre><code>{
+    "status":true,
+    "response":[{
+        "wname":"MeuPortfolio",
+        "waccess":240,
+        "wcdate":"2025-05-30T17:11:33.000Z"
+    },
+    {
+        "wname":"NavesDev-Api",
+        "waccess":5,
+        "wcdate":"2025-06-03T13:30:25.000Z"
+    }]
+}
+          </code></pre>
+          </div>
+
+          <div id="header">
+            <h3>/Websites/NomeDoProjeto</h3>
+            <a
+              class="nonDecoration"
+              href="https://navesdev-api.vercel.app/websites/navesdev-api"
+            >
+              <button id="testb">
+                TESTAR ROTA
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="20px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#1f1f1f"
+                >
+                  <path
+                    d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"
+                  />
+                </svg>
+              </button>
+            </a>
+          </div>
+          <p>
+            Retorna o website que foi digitado na URL e algumas informações como
+            indentificação e número de acessos dele.
+          </p>
+
+          <p>Exemplo de resposta:</p>
+          <div class="codeSpace">
+            <pre><code>{
+    "status":true,
+    "response":{
+        "waccess":14,
+        "wname":"NavesDev-Api",
+        "wcdate":"2025-06-03T13:30:25.000Z"
+    }
+}
+          </code></pre>
+          </div>
+
+          <div id="header">
+            <h3>/Websites/NomeDoProjeto/newaccess</h3>
+            <a
+              class="nonDecoration"
+              href="https://navesdev-api.vercel.app/websites/navesdev-api/newaccess"
+            >
+              <button id="testb">
+                TESTAR ROTA
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  height="20px"
+                  viewBox="0 -960 960 960"
+                  width="24px"
+                  fill="#1f1f1f"
+                >
+                  <path
+                    d="M647-440H160v-80h487L423-744l57-56 320 320-320 320-57-56 224-224Z"
+                  />
+                </svg>
+              </button>
+            </a>
+          </div>
+          <p>
+            Registra um novo acesso ao website que foi digitado na rota e
+            retorna o tempo em milisegundos para poder registrar um novo acesso
+            (para o tratamento no front-end).
+          </p>
+          <p>Exemplo de resposta:</p>
+          <div class="codeSpace">
+            <pre><code>{
+    "status":true,
+    "nextAccess":120000
+}
+          </code></pre>
+          </div>
+        </div>
+      </article>
+
+      <article id="a3">
+        <h2>Limitação</h2>
+        <p>
+          Esta api consta com limites de requisições por ip. Especificamente, para o caso da rota de registro de acessos, ela permite uma requisição por website a cada 2 minutos (para evitar o spam de acessos e acessos desnecessários, como por exemplo, reininciar a página) e para outros casos, o limite de requisições é de 60 por ip, a cada hora (60 divididos para todas as rotas).
+        </p>
+        
+      </article>
+
+    </main>
+    <script>
+      function getCookie(name) {
+        const cookies = document.cookie.split(";");
+        let finded = null;
+        for (let i of cookies) {
+          const [key, value] = i.trim().split("=");
+          if (key === name) {
+            finded = value;
+          }
+        }
+        return finded;
+      }
+
+      async function bootStrap() {
+        if (!getCookie("cooldown")) {
+          response = await fetch(
+            "https://navesdev-api.vercel.app/websites/navesdev-api/newaccess"
+          );
+          console.log("tentativa de acesso")
+          if (!response.ok) {
+            if (response.status(429)) {
+              response = await response.json();
+              document.cookie = `cooldown=on;max-age=${
+                response.retryAfter ? response.retryAfter / 1000 : 60 * 5
+              }; path=/;`;
+            } else {
+              document.cookie = `cooldown=on;max-age=${60 * 5}; path=/;`;
+            }
+          }
+          response = await response.json();
+          document.cookie = `cooldown=on;max-age=${
+            response.nextAccess / 1000
+          }; path=/;`;
+        }
+      }
+      bootStrap()
+    </script>
+  </body>
+</html>
