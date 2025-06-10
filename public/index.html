@@ -17,6 +17,7 @@
         text-align: justify;
         display: flex;
         justify-content: center;
+
       }
       main {
         background-color: white;
@@ -47,6 +48,9 @@
       h3 {
         font-weight: 500;
       }
+      a{
+        width: max-content;
+      }
       #gitRep {
         border: 0;
         border-bottom: 3px solid rgb(101, 168, 0);
@@ -67,6 +71,7 @@
         display: flex;
         flex-direction: column;
         gap: 5px;
+        overflow-wrap: break-word;
       }
       #routes {
         display: flex;
@@ -109,6 +114,7 @@
         background-color: rgb(212, 212, 212);
         width: 100%;
         text-align: center;
+        top:0;
         transform: translateX(-50%);
         transition: 500ms;
       }
@@ -137,8 +143,30 @@
         background: rgb(180, 180, 180);
         border-radius: 10px;
       }
+      #user{
+        display: flex;
+        gap: 5px;
+      }
+      #user img{
+        width: 24px;
+        height: 24px;
+        border-radius: 50%;
+      }
       @media (max-width:1000px) {
- 
+        main{
+          margin: 0;
+          width: 80%;
+          padding: 30px;
+        }
+        h3{
+          word-break: break-all;
+        }
+        #routes #header{
+          flex-wrap: wrap;
+        }
+        .codeSpace{
+          max-width: 80%;
+        }
         .codeSpace::before{
             content:"Toque para expandir"
         }
@@ -150,6 +178,10 @@
       <header>
         <h1>NAVES DEV - API</h1>
         <p>Api de uso pessoal para gestão de projetos pessoais</p>
+        <div id="user">
+          <img src="https://avatars.githubusercontent.com/u/180488844?v=4" alt="">
+          <label for="">NavesDev</label>
+        </div>
       </header>
       <article id="a1">
         <h2>Utilização</h2>
