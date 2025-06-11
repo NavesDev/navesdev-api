@@ -139,7 +139,7 @@ async function bootstrap() {
     config: {
       rateLimit: {
         max: 1,
-        timeWindow: "2m",
+        timeWindow: "10m",
         keyGenerator: function (request) {
           const name = request.params.name;
           const ip = request.ip;
