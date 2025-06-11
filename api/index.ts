@@ -26,7 +26,7 @@ async function bootstrap() {
   });
 
   await app.register(cors, {
-    origin: "*", //"https://navesdev.github.io",
+    origin: ["https://navesdev.github.io","https://navesdev-api.vercel.app",process.env.PERSONAL_IP], 
     credentials: true,
   });
   await app.register(stc,{
@@ -99,7 +99,7 @@ async function bootstrap() {
     }
   }
 
-  app.get("/", (request,reply) => {
+  app.get("/", {config:{cors:{ origin:"https://navesdev-api.vercel.app"}}},(request,reply) => {
     return reply.sendFile("index.html");
   });
 
