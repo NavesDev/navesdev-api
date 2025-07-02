@@ -5,16 +5,7 @@
     { "src": "api/index.ts", "use": "@vercel/node" }
   ],
    "rewrites": [
-    {
-      "source":"/internal(.*)",
-      "missing":[
-        {
-        "type": "header",
-        "key": "x-internal-token"
-      }
-      ],
-      "destination":"/"
-    },
+   
     {
       "source": "/internal/aiservice(.*)",
       "destination":"/api/pyservice.py"
