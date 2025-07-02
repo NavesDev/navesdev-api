@@ -481,7 +481,7 @@ async function bootstrap() {
 
         const pythonApiUrl = `${baseUrl}/internal/aiservice/camisai`;
         let response = await fetch(
-          "http:127.0.0.1:5001/internal/aiservice/camisai", //"http:127.0.0.1:5001/camisai"
+          pythonApiUrl, //"http:127.0.0.1:5001/camisai"
           {
             method: "POST",
             headers: {
