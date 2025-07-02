@@ -1,5 +1,24 @@
 {
+  "builds": [
+    { "src": "*.html", "use": "@vercel/static" },
+    { "src": "api/pyservice.py", "use": "@vercel/python" },
+    { "src": "api/index.ts", "use": "@vercel/node" }
+  ],
    "rewrites": [
+    {
+      "source":"/internal(.*)",
+      "missing":[
+        {
+        "type": "header",
+        "key": "x-internal-token"
+      }
+      ],
+      "destination":"/"
+    },
+    {
+      "source": "/internal/aiservice(.*)",
+      "destination":"/api/pyservice.py"
+    },
     {
       "source": "/(.*)",
       "destination": "/api/index.ts"
