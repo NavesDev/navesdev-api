@@ -475,7 +475,11 @@ async function bootstrap() {
         const chat = await chatManager(request.ip, body.prompt, "user");
         
        
-       
+       const baseUrl = process.env.VERCEL_URL 
+        ? `https://${process.env.VERCEL_URL}` 
+        : `http://localhost:${process.env.PORT || 1607}`;
+
+        const pythonApiUrl = `${baseUrl}/internal/aiservice/camisai`;
         let response = await fetch(
           "http:127.0.0.1:5001/internal/aiservice/camisai", //"http:127.0.0.1:5001/camisai"
           {
