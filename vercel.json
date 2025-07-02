@@ -7,7 +7,7 @@
    "rewrites": [
    
     {
-      "source": "/internal/aiservice(.*)",
+      "source": "/internal/aiservice/(.*)",
       "destination":"/api/pyservice.py"
     },
     {
