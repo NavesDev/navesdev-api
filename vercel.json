@@ -1,5 +1,4 @@
 {
-  "ssoProtection": null,
   "builds": [
     { "src": "*.html", "use": "@vercel/static" },
     { "src": "api/pyservice.py", "use": "@vercel/python" },
