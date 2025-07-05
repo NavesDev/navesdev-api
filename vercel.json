@@ -4,17 +4,15 @@
     { "src": "api/pyservice.py", "use": "@vercel/python" },
     { "src": "api/index.ts", "use": "@vercel/node" }
   ],
-   "rewrites": [
+   "routes": [
    
     {
-      "source": "/internal/aiservice/(.*)",
-      "destination":"/api/pyservice.py",
-      "continue":true
+      "src": "/internal/aiservice/(.*)",
+      "dest":"/api/pyservice.py"
     },
     {
-      "source": "/(.*)",
-      "destination": "/api/index.ts",
-      "continue":true
+      "src": "/(.*)",
+      "dest": "/api/index.ts"
     }
   ]
     
