@@ -8,11 +8,13 @@
    
     {
       "source": "/internal/aiservice/(.*)",
-      "destination":"/api/pyservice.py"
+      "destination":"/api/pyservice.py",
+      "continue":true
     },
     {
       "source": "/(.*)",
-      "destination": "/api/index.ts"
+      "destination": "/api/index.ts",
+      "continue":true
     }
   ]
     
