@@ -480,7 +480,7 @@ async function bootstrap() {
         ? `https://${process.env.VERCEL_URL}` 
         : `http://localhost:${process.env.PORT || 1607}`;
         console.log(baseUrl)
-        const pythonApiUrl = `${baseUrl}/websites`;
+        const pythonApiUrl = `${baseUrl}/internal/aiservice/camisai`;
         console.log(pythonApiUrl)
         let response = await fetch(
           pythonApiUrl, //"http:127.0.0.1:5001/camisai"
@@ -497,6 +497,7 @@ async function bootstrap() {
             }),
           }
         );
+        return reply.send(response);
         if(!response.ok){
           
           const fullError:any = await response.json()
@@ -538,9 +539,7 @@ async function bootstrap() {
       }
     }
   );
-  app.get("/internal/aiservice/teste",(request,reply)=>{
-    return reply.send({message: "teste efetuado com sucesso!",commands:"surpresa"})
-  })
+
 
   return app;
 }
