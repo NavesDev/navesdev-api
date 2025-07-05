@@ -13,7 +13,7 @@
     },
     {
       "source": "/(.*)",
-      "destination": "/api/index.ts",
+      "destination": "/api/index.ts"
     }
   ]
     
