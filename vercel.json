@@ -1,4 +1,5 @@
 {
+  "ssoProtection": null,
   "builds": [
     { "src": "*.html", "use": "@vercel/static" },
     { "src": "api/pyservice.py", "use": "@vercel/python" },
@@ -12,7 +13,7 @@
     },
     {
       "source": "/(.*)",
-      "destination": "/api/index.ts"
+      "destination": "/api/index.ts",
     }
   ]
     
