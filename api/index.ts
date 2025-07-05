@@ -285,17 +285,12 @@ async function bootstrap() {
     if (cache) {
       return { status: true, data: JSON.parse(cache) };
     } else {
-      const response = await fetch("http://localhost:1607/camisAI/loadAssets");
-      if (response.status == 200) {
         return {
-          status: true,
+          status: false,
           message:
-            "Data não estava salva, mas foi salva com sucesso. Tente novamente.",
-          data: JSON.parse(cache),
+            "Assets não carregados. Acessar */camisAI/loadAssets*",
         };
-      } else {
-        throw Error("Erro de salvamento de dados");
-      }
+     
     }
   }
 
@@ -471,7 +466,13 @@ async function bootstrap() {
           });
         }
 
-        const {data} = await getAiAssets();
+        const {status,data} = await getAiAssets();
+        if(!status){
+          return reply.code(303).send({"status":false,
+            "message":"Assets não carregados!",
+            "fetchUrl":"https://navesdev-api.vercel.app/camisAI/loadAssets"
+          })
+        }
         const chat = await chatManager(request.ip, body.prompt, "user");
         
        
