@@ -537,6 +537,11 @@ async function bootstrap() {
       }
     }
   );
+
+  await app.get("/internal/aiservice/camisai",()=>{
+    return "teste 123"
+  });
+
   return app;
 }
 
