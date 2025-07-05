@@ -480,7 +480,7 @@ async function bootstrap() {
         ? `https://${process.env.VERCEL_URL}` 
         : `http://localhost:${process.env.PORT || 1607}`;
         console.log(baseUrl)
-        const pythonApiUrl = `${baseUrl}/internal/aiservice/camisai`;
+        const pythonApiUrl = `${baseUrl}/interno/aiservice/camisai`;
         console.log(pythonApiUrl)
         let response = await fetch(
           pythonApiUrl, //"http:127.0.0.1:5001/camisai"
