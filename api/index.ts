@@ -476,7 +476,7 @@ async function bootstrap() {
         const chat = await chatManager(request.ip, body.prompt, "user");
         
        
-       const baseUrl =`http://localhost:${process.env.PORT || 5500}`;
+       const baseUrl ="navesdev-api.vercel.app" // `http://localhost:${process.env.PORT || 5500}`;
         console.log(baseUrl)
         const pythonApiUrl = `${baseUrl}/internal/aiservice/camisai`;
         console.log(pythonApiUrl)
