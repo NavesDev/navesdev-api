@@ -48,7 +48,7 @@ class requestBody(BaseModel):
     dbData:dict[str,list[dict[str,Any]]]
 
 
-@app.post("/internal/aiservice/camisai")
+@app.post("/camisai")
 async def aiChat(body: requestBody, internal_token: Optional[str] = Header(None, alias="x-internal-token")):
     if(not internal_key or internal_token != internal_key):
         raise HTTPException(status_code=403, detail="Acesso Negado.")
