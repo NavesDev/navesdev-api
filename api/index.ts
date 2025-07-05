@@ -497,7 +497,7 @@ async function bootstrap() {
             }),
           }
         );
-        return reply.send(response);
+        return reply.code(response.status).send(response);
         if(!response.ok){
           
           const fullError:any = await response.json()
