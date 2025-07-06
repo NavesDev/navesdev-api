@@ -293,7 +293,8 @@ async function bootstrap() {
     newmsg = null,
     role = null,
     commands = null,
-    lastHistory = null
+    lastHistory = null,
+    onlyLast = null
   ) {
     let newHistory: any[];
     try {
@@ -309,7 +310,8 @@ async function bootstrap() {
           newHistory.shift();
         }
         if(role=="model"){
-          newHistory.push({ role: role, message: newmsg, commands:commands??[], timestamp: new Date().toISOString() });
+          var formatted = { role: role, message: newmsg, commands:commands??[], timestamp: new Date().toISOString() }
+          newHistory.push(formatted);
         } else{
           newHistory.push({ role: role, message: newmsg, timestamp: new Date().toISOString() });
         }
@@ -320,6 +322,9 @@ async function bootstrap() {
           "EX",
           maxHistoryLifetime
         );
+      }
+      if(onlyLast){
+        return formatted;
       }
       return newHistory;
     } catch (error) {
@@ -491,13 +496,13 @@ async function bootstrap() {
         if(!response.ok){
           
           const fullError:any = await response.json()
-          const errormsg = {status : false,message: "", commands:[], sender:"server"}
+          const errormsg = {status : false,message: "", commands:[], role:"server"}
           errormsg.message = fullError?.detail?.specialMessage ?? "Houve um problema ao entrar em contato com a IA, tente novamente"
           
           if(fullError?.detail?.specialCode){
             const code = fullError.detail["specialCode"].split(".")
             if(code[0] == "1"){
-              errormsg.sender = "model"
+              errormsg.role = "model"
             }
             if(code[1]=="1"){
               errormsg.commands.push("tempban1")
@@ -511,12 +516,11 @@ async function bootstrap() {
           return reply.send(errormsg);
         }
         const newdata:any = await response.json()
-        newdata["sender"] = "model"
         if(newdata.commands.includes("warn")){
           await aiWarn(request.ip)
         }
-        chatManager(request.ip,newdata.message,"model",newdata.commands,chat)
-        return reply.send(newdata);
+        const wanted = chatManager(request.ip,newdata.message,"model",newdata.commands,chat,true)
+        return reply.send(wanted);
       } catch (error) {
         app.log.info(error);
         console.error(error);
