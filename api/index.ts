@@ -207,7 +207,7 @@ async function bootstrap() {
       }
     }
   );
-  const ailifetime = 60 * 60;
+  const ailifetime = 60 * 60 * 72;
 
   await app.get(
     "/camisAI/loadAssets",
@@ -239,14 +239,6 @@ async function bootstrap() {
 
     async (request, reply) => {
       try {
-        let cache = await app.redis.get(`aiAssets-${version}`);
-        if (cache) {
-          return reply.send({
-            status: true,
-            message: "Carregado com sucesso no sistema (???)",
-            lifetime: await app.redis.ttl(`aiAssets-${version}`),
-          });
-        } else {
           const [projects] = await pool
             .promise()
             .query("select * from website");
@@ -265,13 +257,11 @@ async function bootstrap() {
           if (result == "OK") {
             return reply.send({
               status: true,
-              message: "Salvo com sucesso no sistema ",
-              lifetime: ailifetime,
+              message: "Atualizado com sucesso no sistema.",
             });
           } else {
-            throw new Error("Não foi possível salvar os dados da IA");
+            throw new Error("Não foi possível atualizar os dados da IA");
           }
-        }
       } catch (error) {
         console.error(error);
         return reply
@@ -295,7 +285,7 @@ async function bootstrap() {
   }
 
   const msgprefix = "camisaiv1-chatHistory-";
-  const maxHistoryLifetime = 60 * 60 * 24 * 7;
+  const maxHistoryLifetime = 60 * 60 * 24 * 14;
   const maxHistoryLength = 20;
 
   async function chatManager(
