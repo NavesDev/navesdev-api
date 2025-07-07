@@ -13,7 +13,7 @@ def ___generateProject(projData):
         proj += f"""- **Número de Acessos estimado:** {accNumber}
 """
     if(projData.get("wAccessUrl")):
-        proj += f"""- **Acesso ao projeto:** `access/{name}`
+        proj += f"""- **Acesso ao projeto:** `access/{name.replace(" ","")}`
 """
     return proj;
 
