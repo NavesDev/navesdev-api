@@ -297,6 +297,7 @@ async function bootstrap() {
     onlyLast = null
   ) {
     let newHistory: any[];
+    let formatted:any;
     try {
       if (!lastHistory) {
         const lastHistory = await app.redis.get(`${msgprefix}${userid}`);
@@ -310,7 +311,7 @@ async function bootstrap() {
           newHistory.shift();
         }
         if(role=="model"){
-          var formatted = { role: role, message: newmsg, commands:commands??[], timestamp: new Date().toISOString() }
+          formatted = { role: role, message: newmsg, commands:commands??[], timestamp: new Date().toISOString() }
           newHistory.push(formatted);
         } else{
           newHistory.push({ role: role, message: newmsg, timestamp: new Date().toISOString() });
@@ -519,7 +520,7 @@ async function bootstrap() {
         if(newdata.commands.includes("warn")){
           await aiWarn(request.ip)
         }
-        const wanted = chatManager(request.ip,newdata.message,"model",newdata.commands,chat,true)
+        const wanted = await chatManager(request.ip,newdata.message,"model",newdata.commands,chat,true)
         return reply.send(wanted);
       } catch (error) {
         app.log.info(error);
