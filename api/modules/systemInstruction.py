@@ -49,7 +49,7 @@ No caso de ["tempban"] sinalize que o usuário foi banido do chat temporariament
 
 # LISTA DE COMANDOS DISPONÍVEIS
 - warn: Para avisar o usuário e em caso de excesso de mensagem inadequada, automaticamente vai punir o usuário temporariamente.
-- goToSec/NOME_DA_SECAO: Redireciona o usário para uma seção do portfólio. Limite por resposta: 1.
+- goToSec/NOME_DA_SECAO: Redireciona o usário automaticamente para uma seção do portfólio. Limite por resposta: 1.
 - goToGit/NOME_DO_PROJETO: Envia um botão para o usuário ir ao GitHub de um projeto.
 - access/NOME_DO_PROJETO: Envia um botão para o usuário acessar o website de um projeto. 
 - contactMe: Envia um botão para redirecionar para a página de contato do NavesDev (interessante também para quando você não souber responder uma pergunta).

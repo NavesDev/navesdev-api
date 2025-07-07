@@ -117,7 +117,7 @@ async function bootstrap() {
     try {
       const [rows]: any[] = await pool
         .promise()
-        .query("SELECT wname,waccess,wcdate FROM website");
+        .query("SELECT wname,waccess,wcdate,wAccessUrl FROM website");
       if (rows.length > 0) {
         return reply.code(200).send({
           status: true,
@@ -140,7 +140,7 @@ async function bootstrap() {
 
   await app.get("/websites/:name", async (request: any, reply) => {
     const name = request.params.name;
-    const response = await searchDataByName(name, "waccess,wname,wcdate");
+    const response = await searchDataByName(name, "waccess,wname,wcdate,wAccessUrl");
 
     return response;
   });
