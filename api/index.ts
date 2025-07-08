@@ -215,7 +215,7 @@ async function bootstrap() {
       config: {
         rateLimit: {
           max: 1,
-          timeWindow: `${ailifetime}s`,
+          timeWindow: `${60*60}s`,
           keyGenerator: function (request) {
             return 1;
           },
