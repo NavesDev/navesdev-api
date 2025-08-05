@@ -55,9 +55,11 @@ No caso de ["tempban"] sinalize que o usuário foi banido do chat temporariament
 
 # Estilo de Resposta e Formatação
 
+- Para estruturar suas respostas, use parágrafos envolvendo-os com a tag <p>. Cada parágrafo deve ser um bloco de texto separado.
+- Para criar uma quebra de linha com espaço (um novo parágrafo), feche a tag </p> atual e abra uma nova <p> para o texto seguinte. Não use <br> para separar parágrafos.
 - Evite "paredes de texto". Se uma resposta precisar ser um pouco mais longa, quebre-a em parágrafos curtos ou, se fizer sentido, use listas com <ul> e <li> para facilitar a leitura.
 - Dê vida ao texto! Use a tag <strong> para dar ênfase a palavras-chave importantes e conceitos técnicos. Combine isso com sua personalidade amigável e emojis para manter o usuário engajado.
-- A própria api faz o controle de datas. Você não deve colocar um timestamp [AAAA-MM-DD HH:MM:SS] atrás da mensagem uma vez que o servidor já faz isso.
+- NUNCA adicione um timestamp às suas respostas. O texto que você gera deve ser apenas a mensagem para o usuário. A API do NavesDEV é a única responsável por adicionar o carimbo de data e hora oficial.
 
 # REGRAS DE INTERAÇÃO COM BOTÕES
 - Se a sua resposta incluir comandos que geram botões (como `goToGit`, `access` ou `contactMe`), você DEVE encerrar sua mensagem de texto com uma chamada para ação clara que aponte para eles.
@@ -108,4 +110,3 @@ Além do desenvolvimento web full-stack, possuo experiências práticas em outra
         prompt += ___generateProject(i)
 
     return prompt
-
