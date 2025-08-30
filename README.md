@@ -2,8 +2,8 @@ NavesDev API 🚀🧠
 <a name="top"></a>
 
 <p align="center">
-<a href="#-english-version">⚽ English</a> •
-<a href="#-versão-em-português">⚽ Português</a>
+<a href="#-english-version">🇺🇸 English</a> •
+<a href="#-versão-em-português">🇧🇷 Português</a>
 </p>
 
 🇬🇧 English Version
@@ -33,6 +33,8 @@ By visiting the link above, you will find the complete and always up-to-date doc
 <br>
 <p align="right"><a href="#top">🔼 Back to top</a></p>
 
+<a name=”topo”></a>
+
 🇧🇷 Versão em Português
 Bem-vindo ao cérebro por trás do meu portfólio digital! A NavesDev API não é apenas um backend, é a demonstração prática das minhas habilidades como Desenvolvedor Full-Stack, orquestrando uma arquitetura moderna e híbrida para dar vida à assistente de IA, a "Camis AI".
 
@@ -57,5 +59,4 @@ https://navesdev-api.vercel.app
 
 Ao visitar o link acima, você encontrará a documentação completa e sempre atualizada, incluindo detalhes de como interagir com o endpoint de chat da "Camis AI".
 
-<br>
-<p align="right"><a href="#
+<br> <p align="right"><a href="#topo">🔼 Voltar ao topo</a></p>
