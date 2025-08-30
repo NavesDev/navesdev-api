@@ -1,34 +1,59 @@
+NavesDev API 🚀🧠
 <p align="center">
-  <a href="#-english-version">🇬🇧 English</a> •
-  <a href="#-versão-em-português">🇧🇷 Português</a>
+<a href="#-english-version"> 🏈  English</a> •
+<a href="#-versão-em-português">⚽  Português</a>
 </p>
 
-<!-- Resto do seu README.md -->
+ 🏈  English Version
+Welcome to the brains behind my digital portfolio! The NavesDev API is not just a backend; it's a practical demonstration of my skills as a Full-Stack Developer, orchestrating a modern, hybrid architecture to bring the AI assistant,**Camis AI**, to life.
 
----
+✨ About The Project
+This project showcases my ability to integrate different technologies—Node.js (Fastify) as the main entry point and Python (FastAPI) as the AI microservice—to create a robust and scalable solution.
 
-## 🇬🇧 English Version
+🛠️ Tech Stack
+Backend (Maestro): Node.js, Fastify, TypeScript
 
-_(Aqui você cola toda a versão em inglês do seu README, que a gente já traduziu!)_
+Backend (AI Service): Python, FastAPI
 
-### ✨ About The Project
-This project was born from the desire to go beyond a simple static portfolio. The NavesDev API is a hybrid (polyglot) API that combines the best of two worlds...
+Database & Cache: MySQL & Redis
 
-_(...continua com todo o resto em inglês...)_
+Artificial Intelligence: Google Gemini API (gemini-2.5-flash)
+
+Deployment: Vercel
+
+🧪 Live API & Documentation
+This API is live and comes with its own documentation page. To explore all available routes, see examples, and test the API in real-time, simply visit the base URL:
+
+https://navesdev-api.vercel.app
+
+By visiting the link above, you will find the complete and always up-to-date documentation, including details on how to interact with the "Camis AI" chat endpoint.
 
 <br>
 <p align="right"><a href="#navesdev-api-">🔼 Back to top</a></p>
 
----
+⚽  Versão em Português
+Bem-vindo ao cérebro por trás do meu portfólo digital! A NavesDev API não é apenas um backend, é a demonstração prática das minhas habilidades como Desenvolvedor Full-Stack, orquestrando uma arquitetura moderna e híbrida para dar vida à assistente de IA, a **Camis AI**.
 
-## 🇧🇷 Versão em Português
+✨ Sobre o Projeto
+Este projeto demonstra minha capacidade de integrar diferentes tecnologias—Node.js (Fastify) como o ponto de entrada principal e Python (FastAPI) como o microsserviço de IA—para criar uma solução robusta e escalável.
 
-_(Aqui você cola a versão em português que a gente já criou!)_
+🛠️ Stack Tecnológica
+Backend (Maestro): Node.js, Fastify, TypeScript
 
-### ✨ Sobre o Projeto
-Este projeto nasceu da vontade de ir além de um simples portfólio estático. A NavesDev API é uma API híbrida (poliglota) que combina o melhor de dois mundos...
+Backend (Serviço de IA): Python, FastAPI
 
-_(...continua com todo o resto em português...)_
+Banco de Dados & Cache: MySQL & Redis
+
+Inteligência Artificial: Google Gemini API (gemini-2.5-flash)
+
+Deploy: Vercel
+
+🧪 API Ao Vivo & Documentação
+Esta API está no ar e possui sua própria página de documentação. Para explorar todas as rotas disponíveis, ver exemplos e testar a API em tempo real, basta acessar a URL base:
+
+https://navesdev-api.vercel.app
+
+Ao visitar o link acima, você encontrará a documentação completa e sempre atualizada, incluindo detalhes de como interagir com o endpoint de chat da "Camis AI".
 
 <br>
 <p align="right"><a href="#navesdev-api-">🔼 Voltar ao topo</a></p>
